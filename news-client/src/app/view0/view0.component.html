@@ -11,4 +11,6 @@
 </form>
 
  <button type="button" (click)= "postNews()">Post News</button>
+ <button type="button" (click)= "view3()">View 3</button>
 <h1>Top Tags</h1>
+<button *ngFor="let tag of tags">{{tag}}</button>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ElementRef, Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { Tags } from './tags';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,6 @@ export class NewsService {
   }
   getTags() {
     return firstValueFrom(
-      this.http.get<any>('tags'))
+      this.http.get<Tags[]>('tags'))
   }
 }

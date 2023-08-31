@@ -17,6 +17,8 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
+import vttp2023.batch3.csf.assessment.cnserver.models.TagCount;
+import vttp2023.batch3.csf.assessment.cnserver.models.Tags;
 import vttp2023.batch3.csf.assessment.cnserver.repositories.ImageRepository;
 import vttp2023.batch3.csf.assessment.cnserver.repositories.NewsRepository;
 
@@ -50,10 +52,17 @@ public class NewsController {
 		List<Document> result = mongoRepo.getTags(5);
 		JsonArrayBuilder tagsarray = Json.createArrayBuilder();
 		for (Document doc : result){
-			tagsarray.add(doc.toJson());
+			//probably a better way but ran out of time
+			// JsonObject resp = Json.createObjectBuilder()
+			// .add("tag", doc.get("tag"))
+			// .add("count", doc.get("count"))
+			// .build()
+			Tags t = new Tags(doc.get("tag"), doc.getInteger("count"));
+            tagsarray.add(t.toString());
 		}
 
 		JsonArray resp = tagsarray.build();
+		System.out.println(resp);
 		return ResponseEntity.ok(resp.toString());
 		
 	}
