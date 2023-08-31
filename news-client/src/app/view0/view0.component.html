@@ -1,0 +1,14 @@
+<form [formGroup]="minForm">
+  <div>  <p>Time: </p>
+    <select formControlName="min" (change)="minRec()">
+      <option value=5>5 mins</option>
+      <option value=15>15 mins</option>
+      <option value=30>30 mins</option>
+      <option value=45>45 mins</option>
+      <option value=60>60 mins</option>
+    </select></div>
+
+</form>
+
+ <button type="button" (click)= "postNews()">Post News</button>
+<h1>Top Tags</h1>

@@ -1,0 +1,35 @@
+<h1>Share a News</h1>
+<form [formGroup]="newsForm" (ngSubmit)="processForm()">
+  Title: <input type="text" formControlName="title" ng-minlength="5">
+  <div *ngIf="newsForm.get('title')?.hasError('required') && (newsForm.get('title')?.dirty || newsForm.get('title')?.touched)">
+    Please enter a title
+    </div>
+    <div *ngIf="newsForm.get('title')?.hasError('minlength') && (newsForm.get('title')?.dirty || newsForm.get('title')?.touched)">
+      Must be at least 5 characters in length
+      </div>
+    <div>
+      Photo: <input type="file" #toUpload required>
+    </div>
+  Description: <input type="text" formControlName="description">
+  <div *ngIf="newsForm.get('description')?.hasError('required') && (newsForm.get('description')?.dirty || newsForm.get('description')?.touched)">
+    Please enter a title
+    </div>
+    <div *ngIf="newsForm.get('description')?.hasError('minlength') && (newsForm.get('description')?.dirty || newsForm.get('description')?.touched)">
+      Must be at least 5 characters in length
+      </div>
+  <div>
+    Tags:
+    <input type="text" formControlName="tags">
+    <button type="button" (click) = "addtag()">+</button>
+  </div>
+  <div>
+    <button type="button" (click) = "removetag($event)" *ngFor="let tag of tags" [value] = "tag">
+    {{tag}}
+  </button>
+</div>
+
+  <button type="button" (click)= "back()">Back</button>
+  <button type="submit" [disabled]="newsForm.invalid">
+  Post News
+  </button>
+  </form>
